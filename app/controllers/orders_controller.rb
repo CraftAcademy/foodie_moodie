@@ -3,11 +3,9 @@ class OrdersController < ApplicationController
 
   def create
     dish = Dish.find(params[:dish_id])
-    if @order.add(dish, dish.price)
-      flash[:notice] = "#{dish.title} was successfully added to order!"
-    else
-      flash[:alert] = 'Item not added, try again!'
-    end
+    @order.add(dish, dish.price)
+    flash[:notice] = "#{dish.title} was successfully added to order!"
+
     redirect_to session.delete(:return_to)
   end
 
