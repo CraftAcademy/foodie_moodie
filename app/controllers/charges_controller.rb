@@ -1,11 +1,13 @@
 class ChargesController < ApplicationController
-  def new
-    @amount = params[:total]
-end
-
+  
 def create
+  if session[:order_id]
+    @order = Order.find(session[:order_id])
+  else
+    flash[:error] = 'No order to pay'
+  end
   # Amount in cents
-  @amount = params[:total]
+  @amount = (@order.total*100).to_i
 
   customer = Stripe::Customer.create(
     :email => params[:stripeEmail],
@@ -15,8 +17,8 @@ def create
   charge = Stripe::Charge.create(
     :customer    => customer.id,
     :amount      => @amount,
-    :description => 'Rails Stripe customer',
-    :currency    => 'usd'
+    :description => 'Order ' + @order.id.to_s,
+    :currency    => 'sek'
   )
 
 rescue Stripe::CardError => e

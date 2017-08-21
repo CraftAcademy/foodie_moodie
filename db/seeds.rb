@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 restaurants = Restaurant.create([{name: 'Indian Fun', address1: 'Snorgatan 12', postal_code: '164 55', phone_number: '1234555', city: 'Kista', cuisine: 'Indian Food', }])
-dishes = Dish.create([{title: 'papadom', description: 'deep fried crunchy things', price: 10000, restaurant: restaurants.first}])
+dishes = Dish.create([{title: 'papadom', description: 'deep fried crunchy things', price: 100, restaurant: restaurants.first}])
