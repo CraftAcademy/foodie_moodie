@@ -23,3 +23,5 @@ Scenario: Add dish to order
   And I click on "Show Order"
   Then I should be on the "order" page
   And I should see "papadom"
+
+  

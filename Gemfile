@@ -26,6 +26,7 @@ group :development, :test do
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'coveralls', require: false
   gem 'launchy'
+  gem 'stripe-ruby-mock', require: 'stripe_mock'
 end
 
 group :development do
