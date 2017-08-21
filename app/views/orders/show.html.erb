@@ -10,3 +10,16 @@
 <% end %>
 
 <div>Total price: <%= @order.total%></div>
+<%= form_tag charges_path do %>
+<% if flash[:error].present? %>
+  <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+  </div>
+<% end %>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @order.id %>"
+          data-amount="<%= @order.total %>"
+          data-locale="auto"></script>
+<% end %>
