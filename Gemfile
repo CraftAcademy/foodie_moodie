@@ -14,7 +14,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'acts_as_shopping_cart'
-gem 'stripe'
+gem 'stripe-rails'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -28,6 +29,8 @@ group :development, :test do
   gem 'launchy'
   gem 'stripe-ruby-mock'
   gem 'webmock'
+  gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
 end
 
 group :development do

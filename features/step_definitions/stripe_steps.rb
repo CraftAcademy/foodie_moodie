@@ -1,7 +1,7 @@
 
 When(/^I click the "([^"]*)" stripe button$/) do |button|
   sleep(0.2)
-  click_button button
+  find('.stripe-button-el').trigger('click')
 end
 
 When(/^I fill in my card details on the stripe form$/) do

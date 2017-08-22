@@ -1,3 +1,5 @@
+@javascript 
+
 Feature: As a restaurant owner
   In order to get some money
   I need customers to pay on checkout.
