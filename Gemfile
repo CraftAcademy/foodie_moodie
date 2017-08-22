@@ -8,6 +8,7 @@ end
 gem 'rails', '~> 5.1.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
+gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -28,7 +29,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'launchy'
   gem 'stripe-ruby-mock'
-  gem 'webmock'
+  #gem 'webmock'
   gem 'poltergeist'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
 end

@@ -1,4 +1,4 @@
-@javascript 
+@javascript
 
 Feature: As a restaurant owner
   In order to get some money
@@ -10,15 +10,15 @@ Feature: As a restaurant owner
       | Indian Fun | Snorgatan 12 | 164 55      | 1234555      | Kista | Indian Food |
 
     And the following dishes exist
-      | title         | description                      | price | restaurant |
-      | papadom       | deep fried crunchy things        | 100   | Indian Fun |
+      | title   | description               | price | restaurant |
+      | papadom | deep fried crunchy things | 100   | Indian Fun |
 
-Scenario: I check out and pay with my credit card
-  Given I visit "restaurant" page
-  And I add "papadom" to order
-  And I click on "Show Order"
-  Then I should be on the "order" page
-  And I click the "Pay with Card" stripe button
-  And I fill in my card details on the stripe form
-  And I submit the stripe form
-  Then I should see "Thanks, you paid"
+  Scenario: I check out and pay with my credit card
+    Given I visit "restaurant" page
+    And I add "papadom" to order
+    And I click on "Show Order"
+    Then I should be on the "order" page
+    And I click the "Pay with Card" stripe button
+    And I fill in my card details on the stripe form
+    And I submit the stripe form
+    Then I should see "Thanks, you paid"

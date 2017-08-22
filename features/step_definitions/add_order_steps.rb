@@ -17,6 +17,7 @@ When(/^I add "([^"]*)" to order$/) do |dish_title|
 end
 
 When(/^show me the page$/) do
+  sleep(1)
   save_and_open_page
 end
 

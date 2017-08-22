@@ -5,7 +5,7 @@ When(/^I click the "([^"]*)" stripe button$/) do |button|
 end
 
 When(/^I fill in my card details on the stripe form$/) do
-  sleep(0.1) until page.evaluate_script('$.active') == 0
+  sleep(3)
   @stripe_iframe = all('iframe[name=stripe_checkout_app]').last
   within_frame @stripe_iframe do
     fill_in 'Email', with: 'random@morerandom.com'
@@ -16,9 +16,8 @@ When(/^I fill in my card details on the stripe form$/) do
 end
 
 When(/^I submit the stripe form$/) do
-  order = Order.last
   within_frame @stripe_iframe do
-    click_button "Pay $#{order.total.to_i}"
+    page.execute_script("$('button').click();")
   end
-  sleep(1)
+  sleep(3)
 end
