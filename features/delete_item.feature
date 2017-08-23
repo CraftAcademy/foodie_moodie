@@ -14,3 +14,9 @@ Background:
     | chicken curry | chicken boiled in curry sauce    | 300   | Indian Fun |
     | vegan curry   | vegetables boiled in curry sauce | 400   | Indian Fun |
     | choco curry   | Chocolate boiled in curry sauce  | 500   | Indian Fun |
+
+ And given I see "papadom" and "chicken curry" on the "order" page
+
+Scenario: Delete item from order
+  When I click on the "Remove" button next to "papadom"
+  Then I should see "chicken curry"
