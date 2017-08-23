@@ -1,11 +1,8 @@
 class ChargesController < ApplicationController
 
 def create
-  if session[:order_id]
-    @order = Order.find(session[:order_id])
-  else
-    flash[:error] = 'No order to pay'
-  end
+  @order = Order.find(session[:order_id])    
+
   # Amount in cents
   @amount = @order.total.to_i
 
