@@ -1,7 +1,7 @@
 class ChargesController < ApplicationController
 
 def create
-  @order = Order.find(session[:order_id])    
+  @order = Order.find(session[:order_id])
 
   # Amount in cents
   @amount = @order.total.to_i
@@ -18,8 +18,4 @@ def create
     :currency    => 'sek'
   )
 
-rescue Stripe::CardError => e
-  flash[:error] = e.message
-  redirect_to new_charge_path
-end
 end
