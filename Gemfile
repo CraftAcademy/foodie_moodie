@@ -28,8 +28,7 @@ group :development, :test do
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'coveralls', require: false
   gem 'launchy'
-  gem 'stripe-ruby-mock'
-  #gem 'webmock'
+
   gem 'poltergeist'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
 end

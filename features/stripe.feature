@@ -1,4 +1,4 @@
-@javascript
+@javascript @stripe
 
 Feature: As a restaurant owner
   In order to get some money
@@ -14,7 +14,7 @@ Feature: As a restaurant owner
       | papadom | deep fried crunchy things | 100   | Indian Fun |
 
   Scenario: I check out and pay with my credit card
-    Given I visit "restaurant" page
+    When I visit "restaurant" page
     And I add "papadom" to order
     And I click on "Show Order"
     Then I should be on the "order" page
