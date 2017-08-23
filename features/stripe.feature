@@ -10,8 +10,8 @@ Feature: As a restaurant owner
       | Indian Fun | Snorgatan 12 | 164 55      | 1234555      | Kista | Indian Food |
 
     And the following dishes exist
-      | title   | description               | price | restaurant |
-      | papadom | deep fried crunchy things | 100   | Indian Fun |
+      | title   | description               | price  | restaurant |
+      | papadom | deep fried crunchy things | 1000   | Indian Fun |
 
   Scenario: I check out and pay with my credit card
     When I visit "restaurant" page
