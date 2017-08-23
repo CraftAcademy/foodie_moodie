@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<div>Total price: <%= @order.total %></div>
+<div>Total price: <%= @order.total/100 %></div>
 <%= form_tag charges_path do %>
   <% if flash[:error].present? %>
     <div id="error_explanation">
@@ -20,5 +20,5 @@
           data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
           data-description='Foodie Moodie'
           data-amount="<%= @order.total %>"
-          data-currency="USD"></script>
+          data-currency="sek"></script>
 <% end %>

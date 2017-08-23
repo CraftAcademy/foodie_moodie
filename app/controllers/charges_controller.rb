@@ -1,5 +1,5 @@
 class ChargesController < ApplicationController
-  
+
 def create
   if session[:order_id]
     @order = Order.find(session[:order_id])
@@ -7,7 +7,7 @@ def create
     flash[:error] = 'No order to pay'
   end
   # Amount in cents
-  @amount = (@order.total*100).to_i
+  @amount = @order.total.to_i
 
   customer = Stripe::Customer.create(
     :email => params[:stripeEmail],
