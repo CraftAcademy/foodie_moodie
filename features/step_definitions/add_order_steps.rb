@@ -18,7 +18,6 @@ end
 
 When(/^show me the page$/) do
   sleep(1)
-  save_and_open_page
 end
 
 Then(/^Order items in cart should be "([^"]*)"$/) do |expected_count|
