@@ -1,7 +1,10 @@
-Given(/^given I see "([^"]*)" and "([^"]*)" on the "([^"]*)" page$/) do |arg1, arg2, arg3|
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I remove "([^"]*)" from order$/) do |dish_title|
+  del_button_with_id = Dish.find_by(title: dish_title).id
+  click_link_or_button 'del_' + del_button_with_id.to_s
 end
+# click_link_or_button add_button_with_id
+# 'del_' +
 
-When(/^I click on the "([^"]*)" button next to "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I should not see "([^"]*)"$/) do |dish_title|
+  expect(page).not_to have_content dish_title
 end

@@ -10,13 +10,16 @@ Background:
   And the following dishes exist
     | title         | description                      | price | restaurant |
     | papadom       | deep fried crunchy things        | 100   | Indian Fun |
-    | indian lamb   | lamb with indian spices          | 200   | Indian Fun |
     | chicken curry | chicken boiled in curry sauce    | 300   | Indian Fun |
-    | vegan curry   | vegetables boiled in curry sauce | 400   | Indian Fun |
-    | choco curry   | Chocolate boiled in curry sauce  | 500   | Indian Fun |
 
- And given I see "papadom" and "chicken curry" on the "order" page
 
 Scenario: Delete item from order
-  When I click on the "Remove" button next to "papadom"
-  Then I should see "chicken curry"
+When I visit "restaurant" page
+And I add "papadom" to order
+And I add "chicken curry" to order
+And I click on "Show Order"
+And I remove "papadom" from order
+Then I should see "papadom was successfully removed"
+When I click on "Show Order"
+Then I should not see "papadom"
+And I should see "chicken curry"

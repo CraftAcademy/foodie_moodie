@@ -14,6 +14,15 @@ class OrdersController < ApplicationController
     @order_items = @order.shopping_cart_items
   end
 
+  def destroy
+    dish = Dish.find(params[:dish_id])
+    dish_title = dish.title
+    @order.remove(dish)
+    flash[:notice] = "#{dish_title} was successfully removed from order!"
+
+    redirect_to session.delete(:return_to)
+  end
+
   private
   def get_referer
     session[:return_to] ||= request.referer

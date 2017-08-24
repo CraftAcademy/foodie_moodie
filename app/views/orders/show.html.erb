@@ -3,7 +3,12 @@
     <div><%= order_item.item.title %></div>
     <div><%= order_item.price %></div>
     <div><%= order_item.quantity %></div>
-    <div><%= order_item.item.title %></div>
+    <div>
+      <%= form_tag(order_path, method: "delete") do %>
+        <%= hidden_field_tag :dish_id, order_item.item.id %>
+        <%= submit_tag("Delete", id: 'del_' + order_item.item.id.to_s) %>
+      <% end %>
+    </div>
 
   </div>
 <% end %>
