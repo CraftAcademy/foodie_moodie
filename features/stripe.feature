@@ -24,6 +24,5 @@ Feature: As a restaurant owner
     And I fill in my card details on the stripe form
     And I submit the stripe form
     Then I should see "Thanks, you paid"
-    And I should see "Your order will be delivered to"
     And I click on "Show Order"
     Then Order items in cart should be "0"
