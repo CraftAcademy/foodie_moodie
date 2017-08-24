@@ -1,12 +1,72 @@
+<%= form_tag restaurants_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
 
+<div id="map" class="map" style="height: 400px; width: 800px;"></div>
+
+<div><%= params[:search] %> </div>
+<div><%= @my_ip_location %></div>
 
 <% @restaurants.each do |restaurant| %>
   <div>
     <h1>
-      <%= link_to restaurant.name, restaurant_path(restaurant)%>  
+      <%= link_to restaurant.name, restaurant_path(restaurant)%>
     </h1>
   </div>
-    <div><%= restaurant.address1 %>, <%= restaurant.postal_code %> <%= restaurant.city %> </div>
+    <div><%= restaurant.address %></div>
     <div><%= restaurant.phone_number %></div>
     <div><%= restaurant.cuisine %></div>
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=15&markers=#{restaurant.latitude}%2C#{restaurant.longitude}" %>
 <% end %>
+
+<script type="text/javascript">
+  var my_latitude = <%= @my_ip_location[0] %>  || 59.330668;
+  var my_longitude = <%= @my_ip_location[1] %> || 18.057932;
+  var map;
+
+  document.addEventListener('DOMContentLoaded', function () {
+        map = new GMaps({
+          div: '#map',
+          lat: my_latitude,
+          lng: my_longitude,
+      });
+      <% if @geo_locate %>
+        GMaps.geolocate({
+            success: function(position) {
+                map.setCenter(position.coords.latitude, position.coords.longitude);
+                my_latitude = position.coords.latitude;
+                my_longitude = position.coords.longitude;
+            },
+            error: function(error) {
+                alert('Geolocation failed: '+error.message);
+            },
+            not_supported: function() {
+                alert("Your browser does not support geolocation");
+            },
+            always: function() {
+                  map.addMarker({
+                    lat: my_latitude,
+                    lng: my_longitude,
+                    title: "Your location",
+                    click: function(e) {
+                        
+                    }
+                });
+            }
+        });
+      <% else %>
+        map.addMarker({
+            lat: my_latitude,
+            lng: my_longitude,
+            title: 'Lima',
+            click: function(e) {
+                alert('You clicked in this marker');
+            }
+        });
+      <% end %>
+
+  });
+</script>

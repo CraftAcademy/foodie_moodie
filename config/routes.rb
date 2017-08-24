@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :restaurants, except: [:index]
+  resources :restaurants
   root controller: :restaurants, action: :index
   resources :orders, only: [:create, :show]
   resources :charges

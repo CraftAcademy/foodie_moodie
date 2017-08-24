@@ -2,14 +2,14 @@
 <html>
   <head>
     <title>FoodieMoodie</title>
+  <%= csrf_meta_tags %>
 
-    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" %>
     <%= javascript_include_tag 'application', data:{turbolinks: {track: 'reload'}} %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css" %>
     <%= stylesheet_link_tag    'application', media: 'all', data:{turbolinks: {track: 'reload'}} %>
-
   </head>
 
   <body>
@@ -18,7 +18,7 @@
         <%= link_to "Foodie Moodie", root_path, class: "brand-logo" %>
         <ul id="nav-mobile" class="right">
           <li>
-            <%= link_to "Show Order", order_path(@order) %>
+            <%= link_to "Show Order (" + get_order_items_count.to_s + ")", order_path(@order) %>
               <span id="order_item">Order items: <%= get_order_items_count %> </span>
             </a>
           </li>

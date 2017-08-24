@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<div>Total price: <%= @order.total/100 %></div>
+<div>Total price: <%= @order.total %></div>
 <%= form_tag charges_path do %>
   <% if flash[:error].present? %>
     <div id="error_explanation">
@@ -19,6 +19,6 @@
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
           data-description='Foodie Moodie'
-          data-amount="<%= @order.total %>"
+          data-amount="<%= @order.total * 100 %>"
           data-currency="sek"></script>
 <% end %>
