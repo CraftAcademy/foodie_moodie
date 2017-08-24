@@ -8,8 +8,17 @@
   </div>
 <% end %>
 
+
 <div>Total price: <%= @order.total %></div>
 <%= form_tag charges_path do %>
+  <div>Name: <%= text_field_tag 'name' %></div>
+  <div>Address 1: <%= text_field_tag 'address1' %></div>
+  <div>Address 2: <%= text_field_tag 'address2' %></div>
+  <div>Postal Code: <%= text_field_tag 'postal_code' %></div>
+  <div>City: <%= text_field_tag 'city' %></div>
+  <div>E-mail: <%= text_field_tag 'email' %></div>
+  <div>Phone: <%= text_field_tag 'phone_number' %></div>
+
   <% if flash[:error].present? %>
     <div id="error_explanation">
       <p><%= flash[:error] %></p>

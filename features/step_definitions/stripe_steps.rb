@@ -15,6 +15,16 @@ When(/^I fill in my card details on the stripe form$/) do
   end
 end
 
+Then(/^I should enter in my personal information$/) do
+  fill_in 'name', with: 'random name'
+  fill_in 'address1', with: 'street 1'
+  fill_in 'address2', with: 'c/o my home'
+  fill_in 'postal_code', with: '12345'
+  fill_in 'city', with: 'Farsta'
+  fill_in 'email', with: 'email@dummy.com'
+  fill_in 'phone_number', with: '+461234567'
+end
+
 When(/^I submit the stripe form$/) do
   within_frame @stripe_iframe do
     page.execute_script("$('button').click();")

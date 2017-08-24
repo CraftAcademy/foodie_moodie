@@ -3,6 +3,14 @@ class ChargesController < ApplicationController
 def create
   @order = Order.find(session[:order_id])
 
+  @order.name = params[:name]
+  @order.address1 = params[:address1]
+  @order.address2 = params[:address2]
+  @order.postal_code = params[:postal_code]
+  @order.city = params[:city]
+  @order.phone_number = params[:phone_number]
+  @order.email = params[:email]
+
   # Amount in cents
   @amount = (@order.total * 100).to_i
 
@@ -18,6 +26,7 @@ def create
     currency:     'sek'
   )
   @amountpaid = @order.total
+  @delivery_info = @order.name + ' ' + @order.address1 + ' ' + @order.address2 + ' ' + @order.postal_code + ' ' + @order.city
   @order = Order.create
   session[:order_id] = @order.id
 

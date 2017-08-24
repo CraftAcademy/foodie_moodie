@@ -18,9 +18,12 @@ Feature: As a restaurant owner
     And I add "papadom" to order
     And I click on "Show Order"
     Then I should be on the "order" page
+    And I should see "Address 1"
+    And I should enter in my personal information
     And I click the "Pay with Card" stripe button
     And I fill in my card details on the stripe form
     And I submit the stripe form
     Then I should see "Thanks, you paid"
+    And I should see "Your order will be delivered to"
     And I click on "Show Order"
     Then Order items in cart should be "0"
