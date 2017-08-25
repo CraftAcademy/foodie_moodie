@@ -1,10 +1,10 @@
 Restaurant: <%= @restaurant.name %>
 
-
 <% @dishes.each do |dish| %>
     <%= dish.title %>
     <%= dish.description %>
     <%= dish.price %>
+    <%= dish.dish_category_id %>
 
     <%= form_tag(orders_path) do %>
       <%= hidden_field_tag :dish_id, dish.id %>
