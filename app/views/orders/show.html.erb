@@ -31,3 +31,8 @@
           data-amount="<%= @order.total * 100 %>"
           data-currency="sek"></script>
 <% end %>
+<script>
+$(document).ready(function(){
+$('.stripe-button-el').attr('disabled', 'disabled');
+});
+</script>
