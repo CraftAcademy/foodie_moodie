@@ -17,8 +17,8 @@ end
 
 Then(/^I should enter in my personal information$/) do
   fill_in 'name', with: 'random name'
-  fill_in 'address1', with: 'street 1'
-  fill_in 'address2', with: 'c/o my home'
+  fill_in 'address_1', with: 'street 1'
+  fill_in 'address_2', with: 'c/o my home'
   fill_in 'postal_code', with: '12345'
   fill_in 'city', with: 'Farsta'
   fill_in 'email', with: 'email@dummy.com'

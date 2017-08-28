@@ -10,52 +10,57 @@
 
 
 <div>Total price: <%= @order.total %></div>
-<%= form_tag charges_path do %>
-  <div>Name: <%= text_field_tag 'name', '', onblur: 'checkMandatoryValues()'%></div>
-  <div>Address 1: <%= text_field_tag 'address1', '', onblur: 'checkMandatoryValues()' %></div>
-  <div>Address 2: <%= text_field_tag 'address2' %></div>
-  <div>Postal Code: <%= text_field_tag 'postal_code', '', onblur: 'checkMandatoryValues()' %></div>
-  <div>City: <%= text_field_tag 'city', '', onblur: 'checkMandatoryValues()' %></div>
-  <div>E-mail: <%= text_field_tag 'email', '', onblur: 'checkMandatoryValues()' %></div>
-  <div>Phone: <%= text_field_tag 'phone_number', '', onkeyup: 'checkMandatoryValues()' %></div>
+  <%= form_tag charges_path do %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name, '', onblur: 'checkMandatoryValues()'%>
+    <%= label_tag :address_1, 'Address 1' %>
+    <%= text_field_tag :address_1, '', onblur: 'checkMandatoryValues()'%>
+    <%= label_tag :address_2, 'Address 2' %>
+    <%= text_field_tag :address_2, '', onblur: 'checkMandatoryValues()'%>
+    <%= label_tag :postal_code %>
+    <%= text_field_tag :postal_code, '', onblur: 'checkMandatoryValues()'%>
+    <%= label_tag :city %>
+    <%= text_field_tag :city, '', onblur: 'checkMandatoryValues()' %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, '', onblur: 'checkMandatoryValues()' %>
+    <%= label_tag :phone_number %>
+    <%= text_field_tag :phone_number, '', onblur: 'checkMandatoryValues()' %>
 
-  <% if flash[:error].present? %>
-    <div id="error_explanation">
-      <p><%= flash[:error] %></p>
-    </div>
-  <% end %>
-
-  <div id="mandatory-address-message">Customer Information Must be Filled in</div>
-
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
-          data-description='Foodie Moodie'
-          data-amount="<%= @order.total * 100 %>"
-          data-currency="sek"></script>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <div id="mandatory-address-message">Customer Information Must be Filled in</div>
 <% end %>
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
+        data-description='Foodie Moodie'
+        data-amount="<%= @order.total * 100 %>"
+        data-currency="sek"></script>
 <script>
 
-var checkMandatoryValues = function(){
-  var name = $('#name').val();
-  var address1 = $('#address1').val();
-  var address2 = $('#address2').val();
-  var postal_code = $('#postal_code').val();
-  var city = $('#city').val();
-  var email = $('#email').val();
-  var phone = $('#phone_number').val();
-  //console.log(name, address1, address2, postal_code, city, email, phone);
-  if (name && address1 && postal_code && city && email && phone){
-    $('.stripe-button-el').removeAttr('disabled');
-    $('#mandatory-address-message').hide();
-  }
-  else
-  {
-    $('.stripe-button-el').attr('disabled', 'disabled');
-    $('#mandatory-address-message').show();
-  }
-};
+  var checkMandatoryValues = function(){
+    var name = $('#name').val();
+    var address1 = $('#address_1').val();
+    var address2 = $('#address_2').val();
+    var postal_code = $('#postal_code').val();
+    var city = $('#city').val();
+    var email = $('#email').val();
+    var phone = $('#phone_number').val();
+    //console.log(name, address1, address2, postal_code, city, email, phone);
+    if (name && address1 && postal_code && city && email && phone){
+      $('.stripe-button-el').removeAttr('disabled');
+      $('#mandatory-address-message').hide();
+    }
+    else
+    {
+      $('.stripe-button-el').attr('disabled', 'disabled');
+      $('#mandatory-address-message').show();
+    }
+  };
 
-$(document).ready(function(){
-  $('.stripe-button-el').attr('disabled', 'disabled');
-});
+  $(document).ready(function(){
+    $('.stripe-button-el').attr('disabled', 'disabled');
+  });
 </script>

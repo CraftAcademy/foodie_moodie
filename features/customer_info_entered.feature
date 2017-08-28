@@ -20,4 +20,4 @@ Feature: As a restaurant owner
     Then I should be on the "order" page
     And I should see "Address 1"
     And I should enter in my personal information
-    And the "Pay with Card" button should be enabled
+    Then the "Pay with Card" button should be enabled
