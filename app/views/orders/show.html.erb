@@ -25,6 +25,8 @@
     </div>
   <% end %>
 
+  <div id="mandatoryAddressMessage">Customer Information Must be Filled in</div>
+
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
           data-description='Foodie Moodie'
@@ -41,22 +43,19 @@ var checkMandatoryValues = function(){
   var city = $('#city').val();
   var email = $('#email').val();
   var phone = $('#phone_number').val();
-  console.log(name, address1, address2, postal_code, city, email, phone);
+  //console.log(name, address1, address2, postal_code, city, email, phone);
   if (name && address1 && postal_code && city && email && phone){
     $('.stripe-button-el').removeAttr('disabled');
+    $('#mandatoryAddressMessage').hide();
   }
   else
   {
     $('.stripe-button-el').attr('disabled', 'disabled');
+    $('#mandatoryAddressMessage').show();
   }
 };
 
 $(document).ready(function(){
   $('.stripe-button-el').attr('disabled', 'disabled');
-  //Collect fileds that should be filled in
-  //var address1 = $('#address1_field').val()
-  // if (all fields have value) {
-  //$('.stripe-button-el').removeAttr('disabled');//
-  //}
 });
 </script>

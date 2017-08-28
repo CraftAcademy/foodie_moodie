@@ -19,6 +19,6 @@ Feature: As a restaurant owner
     And I click on "Show Order"
     Then I should be on the "order" page
     And I should see "Address 1"
-    And the "Pay with Card" button should be disabled 
-    Then I should see "Customer information is missing"
+    And the "Pay with Card" button should be disabled
+    Then I should see "Customer Information Must be Filled in"
     And I should be on the "order" page
