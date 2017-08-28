@@ -19,8 +19,6 @@ Feature: As a restaurant owner
     And I click on "Show Order"
     Then I should be on the "order" page
     And I should see "Address 1"
-    And I click the "Pay with Card" stripe button
-    And I fill in my card details on the stripe form
-    And I submit the stripe form
+    And the "Pay with Card" button should be disabled 
     Then I should see "Customer information is missing"
     And I should be on the "order" page

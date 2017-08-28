@@ -11,13 +11,13 @@
 
 <div>Total price: <%= @order.total %></div>
 <%= form_tag charges_path do %>
-  <div>Name: <%= text_field_tag 'name' %></div>
-  <div>Address 1: <%= text_field_tag 'address1' %></div>
+  <div>Name: <%= text_field_tag 'name', '', onblur: 'checkMandatoryValues()'%></div>
+  <div>Address 1: <%= text_field_tag 'address1', '', onblur: 'checkMandatoryValues()' %></div>
   <div>Address 2: <%= text_field_tag 'address2' %></div>
-  <div>Postal Code: <%= text_field_tag 'postal_code' %></div>
-  <div>City: <%= text_field_tag 'city' %></div>
-  <div>E-mail: <%= text_field_tag 'email' %></div>
-  <div>Phone: <%= text_field_tag 'phone_number' %></div>
+  <div>Postal Code: <%= text_field_tag 'postal_code', '', onblur: 'checkMandatoryValues()' %></div>
+  <div>City: <%= text_field_tag 'city', '', onblur: 'checkMandatoryValues()' %></div>
+  <div>E-mail: <%= text_field_tag 'email', '', onblur: 'checkMandatoryValues()' %></div>
+  <div>Phone: <%= text_field_tag 'phone_number', '', onkeyup: 'checkMandatoryValues()' %></div>
 
   <% if flash[:error].present? %>
     <div id="error_explanation">
@@ -32,7 +32,31 @@
           data-currency="sek"></script>
 <% end %>
 <script>
+
+var checkMandatoryValues = function(){
+  var name = $('#name').val();
+  var address1 = $('#address1').val();
+  var address2 = $('#address2').val();
+  var postal_code = $('#postal_code').val();
+  var city = $('#city').val();
+  var email = $('#email').val();
+  var phone = $('#phone_number').val();
+  console.log(name, address1, address2, postal_code, city, email, phone);
+  if (name && address1 && postal_code && city && email && phone){
+    $('.stripe-button-el').removeAttr('disabled');
+  }
+  else
+  {
+    $('.stripe-button-el').attr('disabled', 'disabled');
+  }
+};
+
 $(document).ready(function(){
-$('.stripe-button-el').attr('disabled', 'disabled');
+  $('.stripe-button-el').attr('disabled', 'disabled');
+  //Collect fileds that should be filled in
+  //var address1 = $('#address1_field').val()
+  // if (all fields have value) {
+  //$('.stripe-button-el').removeAttr('disabled');//
+  //}
 });
 </script>
