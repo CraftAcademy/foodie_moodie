@@ -1,7 +1,6 @@
 class RestaurantsController < ApplicationController
-
+  
   def index
-
     if params[:search].present?
       @restaurants = Restaurant.near(params[:search])
       @my_ip_location = Geocoder.coordinates(params[:search])

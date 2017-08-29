@@ -17,7 +17,7 @@
         <%= link_to "Foodie Moodie", root_path, class: "brand-logo" %>
         <ul id="nav-mobile" class="right">
           <li>
-            <%= link_to "Show Order (" + get_order_items_count.to_s + ")", order_path(@order) %>
+            <%= link_to "Show Order (" + get_order_items_count.to_s + ")", order_path(get_order) %>
               <span id="order_item">Order items: <%= get_order_items_count %> </span>
             </a>
           </li>

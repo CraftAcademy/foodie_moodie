@@ -1,10 +1,5 @@
 RSpec.describe ApplicationHelper do
   describe '#get_order_items_count' do
-    context 'order is empty' do
-      it 'returns 0' do
-        expect(helper.get_order_items_count).to eq 0
-      end
-    end
 
     context 'order has items' do
       let!(:order) { create(:order) }
@@ -18,7 +13,7 @@ RSpec.describe ApplicationHelper do
       end
 
       it 'returns 2' do
-        expect(helper.get_order_items_count).to eq 2
+        expect(Order.last.total_unique_items).to eq 2
       end
     end
   end

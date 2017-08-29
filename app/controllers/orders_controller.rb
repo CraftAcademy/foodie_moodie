@@ -1,30 +1,25 @@
 class OrdersController < ApplicationController
-  before_action :get_referer
+  helper ApplicationHelper
 
   def create
     dish = Dish.find(params[:dish_id])
-    @order.add(dish, dish.price)
+    get_order.add(dish, dish.price)
     flash[:notice] = "#{dish.title} was successfully added to order!"
 
-    redirect_to session.delete(:return_to)
+    redirect_to request.referer
   end
 
   def show
-    #@order = Order.find_by(id: session[:order_id])
-    @order_items = @order.shopping_cart_items
+    @order = get_order
   end
 
   def destroy
     dish = Dish.find(params[:dish_id])
     dish_title = dish.title
-    @order.remove(dish)
+    get_order.remove(dish)
     flash[:notice] = "#{dish_title} was successfully removed from order!"
 
-    redirect_to session.delete(:return_to)
+    redirect_to order_path(get_order)
   end
 
-  private
-  def get_referer
-    session[:return_to] ||= request.referer
-  end
 end
