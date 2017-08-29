@@ -2,8 +2,8 @@ RSpec.describe Order, type: :model do
   it { is_expected.to have_db_column :created_at }
   it { is_expected.to have_db_column :updated_at }
   it { is_expected.to have_db_column :name }
-  it { is_expected.to have_db_column :address1 }
-  it { is_expected.to have_db_column :address2 }
+  it { is_expected.to have_db_column :address_1 }
+  it { is_expected.to have_db_column :address_2 }
   it { is_expected.to have_db_column :postal_code }
   it { is_expected.to have_db_column :city }
   it { is_expected.to have_db_column :phone_number }

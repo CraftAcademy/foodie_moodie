@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    #@order = Order.find_by(id: session[:order_id])
     @order_items = @order.shopping_cart_items
   end
 
