@@ -1,8 +1,12 @@
 class ChargesController < ApplicationController
 
   before_action :get_order
+  before_action :reset_session, only: :create
   before_action :update_order_details, only: :create
   before_action :redirect_back_on_missing_info, only: :create
+  after_action :set_delivery_info
+  after_action :update_order_status
+
 
   def create
     # Amount in cents
@@ -21,8 +25,8 @@ class ChargesController < ApplicationController
     )
 
     @amountpaid = @order.total
-    set_delivery_info
-    session[:order_id] = @order.id
+
+
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -37,8 +41,11 @@ class ChargesController < ApplicationController
     @order.city = params[:city]
     @order.phone_number = params[:phone_number]
     @order.email = params[:email]
+    @order.save
 
   end
+
+  private
 
   def redirect_back_on_missing_info
     if @order.name.nil? || @order.name.empty?
@@ -50,6 +57,14 @@ class ChargesController < ApplicationController
 
   def set_delivery_info
     @delivery_info = @order.name + ' ' + @order.address_1 + ' ' + @order.address_2 + ' ' + @order.postal_code + ' ' + @order.city
+  end
+
+  def update_order_status
+    @order.update_attribute(:payed, true)
+  end
+
+  def reset_session
+    session.delete(:order_id)
   end
 
 end

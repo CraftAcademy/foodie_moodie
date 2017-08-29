@@ -10,15 +10,13 @@ Feature: As a restaurant owner
       | Indian Fun | Snorgatan 12 | 164 55      | 1234555      | Kista | Indian Food |
 
     And the following dishes exist
-      | title   | description               | price  | restaurant |
-      | papadom | deep fried crunchy things | 1000   | Indian Fun |
+      | title   | description               | price | restaurant |
+      | papadom | deep fried crunchy things | 1000  | Indian Fun |
 
   Scenario: I check out and pay with my credit card
     When I visit "restaurant" page
     And I add "papadom" to order
     And I click on "Show Order"
-    Then I should be on the "order" page
-    And I should see "Address 1"
-    And the "Pay with Card" button should be disabled
-    Then I should see "Customer Information Must be Filled in"
-    And I should be on the "order" page
+    Then the "Pay with Card" button should be disabled
+    And I should see "Customer Information Must be Filled in"
+    And I should be on the order page

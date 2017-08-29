@@ -8,6 +8,7 @@ RSpec.describe Order, type: :model do
   it { is_expected.to have_db_column :city }
   it { is_expected.to have_db_column :phone_number }
   it { is_expected.to have_db_column :email }
+  it { is_expected.to have_db_column :payed }
 
   it 'has 0 tax' do
     expect(subject.tax_pct).to eq 0

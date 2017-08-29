@@ -17,7 +17,6 @@ Feature: As a restaurant owner
     When I visit "restaurant" page
     And I add "papadom" to order
     And I click on "Show Order"
-    Then I should be on the "order" page
-    And I should see "Address 1"
-    And I should enter in my personal information
+    Then I should be on the order page
+    And I enter in my personal information
     Then the "Pay with Card" button should be enabled
