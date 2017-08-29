@@ -13,13 +13,17 @@ Feature: As a user
 
   Scenario: Landing page displayes restaurants based on location from IP address
     When I visit "landing" page
-    Then should see restaurants in "Stockholm"
-    And should not see restaurants in "Göteborg"
+    Then I should see "Vapiano"
+    And I should see "Rice"
+    And I should not see "Green & Rum"
+    And I should not see "Tandoori Kitchen"
 
   Scenario: from manual input of address in search field
     When I visit "landing" page
     And I fill "search" with "Gruvgatan 1, Västra Frölunda"
     And I click on "Search Near"
-    Then should not see restaurants in "Stockholm"
-    And should see restaurants in "Göteborg"
+    Then I should not see "Vapiano"
+    And I should not see "Rice"
+    And I should see "Green & Rum"
+    And I should see "Tandoori Kitchen"
     And the center of the map should be approximately "57.6632027" lat and "11.9405717" lng

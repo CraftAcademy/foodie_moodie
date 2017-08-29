@@ -18,20 +18,3 @@ end
 Given(/^my current location is set to "([^"]*)" lat and "([^"]*)" lng$/) do |lat, lng|
   page.execute_script("map.setCenter(#{lat}, #{lng});")
 end
-
-Then(/^Show me a image of the page$/) do
-  sleep(1)
-  Capybara::Screenshot.screenshot_and_open_image
-end
-
-When(/^I fill "([^"]*)" with "([^"]*)"$/) do |field, content|
-  fill_in field, with: content
-end
-
-Then(/^should see restaurants in "([^"]*)"$/) do |city|
-  expect(page).to have_content city
-end
-
-Then(/^should not see restaurants in "([^"]*)"$/) do |city|
-  expect(page).not_to have_content city
-end

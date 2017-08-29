@@ -22,7 +22,3 @@ When(/^I visit "([^"]*)" page$/) do |page|
       visit orders_path
   end
 end
-
-When(/^I click on "([^"]*)"$/) do |link|
-  click_link_or_button link
-end

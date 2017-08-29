@@ -1,26 +1,48 @@
-<%= form_tag restaurants_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
-  </p>
-<% end %>
+<br>
+<div class="card map" id="map"></div>
+<div class="note"><%= params[:search] %> : <%= @my_ip_location %></div>
+<h4>Is this the place you want your food delivered to?</h4>
+<h6>If not, enter the correct location below to get the restaurants that will deliver to your place. </h6>
+<br>
 
-<div id="map" class="map" style="height: 400px; width: 800px;"></div>
+<div class="row">
+  <%= form_tag restaurants_path, method: :get do %>
+    <div class = "col s12 m9 left">
+      <%= text_field_tag :search, params[:search], placeholder: "Your location" %>
+    </div>
+    <div class = "col s12 m3 right">
+      <%= submit_tag "Search Near", name: nil, class: "waves-effect waves-light btn-large" %>
+    </div>
+  <% end %>
+</div>
 
-<div><%= params[:search] %> </div>
-<div><%= @my_ip_location %></div>
+<div class="row">
 
 <% @restaurants.each do |restaurant| %>
-  <div>
-    <h1>
-      <%= link_to restaurant.name, restaurant_path(restaurant)%>
-    </h1>
-  </div>
-    <div><%= restaurant.address %></div>
-    <div><%= restaurant.phone_number %></div>
-    <div><%= restaurant.cuisine %></div>
-    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=15&markers=#{restaurant.latitude}%2C#{restaurant.longitude}" %>
+
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <%= image_tag "http://lorempixel.com/400/200/food/" + restaurant.id.to_s + "/"%>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><%= restaurant.name %><i class="material-icons right">more_vert</i></span>
+          <p>Cuisine: <%= restaurant.cuisine %></p>
+          <br><%= link_to 'Go to restaurant: ' + restaurant.name, restaurant_path(restaurant)%>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><%= restaurant.name %><i class="material-icons right">close</i></span>
+          <div><%= restaurant.address %></div>
+          <div><%= restaurant.phone_number %></div>
+          <div><%= mail_to restaurant.email %></div>
+        </div>
+      </div>
+    </div>
+
 <% end %>
+
+</div>
+
 
 <script type="text/javascript">
   var my_latitude = <%= @my_ip_location[0] %>  || 59.330668;
@@ -28,6 +50,7 @@
   var map;
 
   document.addEventListener('DOMContentLoaded', function () {
+
         map = new GMaps({
           div: '#map',
           lat: my_latitude,

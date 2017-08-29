@@ -23,6 +23,8 @@ Feature: As a restaurant owner
     And I click the "Pay with Card" stripe button
     And I fill in my card details on the stripe form
     And I submit the stripe form
-    Then I should see "Thanks, you paid"
+    Then I should see "Thanks, you paid 1000.00 sek!"
+    And I should see "Including VAT. (12%): 107.10 sek"
+    And I should see "papadom"
     And I click on "Show Order"
     Then Order items in cart should be "0"

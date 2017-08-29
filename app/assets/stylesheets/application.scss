@@ -1,3 +1,5 @@
+@import 'materialize';
+@import 'material_icons';
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,3 +15,24 @@
  *= require_tree .
  *= require_self
  */
+
+.note {
+    font-weight:normal;
+    color:#3B3B3B;
+    letter-spacing:1pt;
+    word-spacing:2pt;
+    font-size:6px;
+}
+
+.btn-small {
+  font-size: 10px;
+  height: 24px;
+  line-height: 24px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+}

@@ -1,1 +1,23 @@
-<h2>Thanks, you paid <strong><%= @amountpaid %>sek</strong>!</h2>
+<h2>Thanks, you paid <strong><%= @order.total %> sek</strong>!</h2>
+
+<h2>Items in order:</h2>
+<table>
+  <tr>
+    <th>Dish title: </th>
+    <th>Price: </th>
+    <th>Quantity: </th>
+    <th>Sum: </th>
+  </tr>
+  <% @order.shopping_cart_items.each do |order_item| %>
+    <tr id="<%= "order_row_#{order_item.item.id}" %>">
+      <td><%= order_item.item.title %></td>
+      <td><%= order_item.price %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= order_item.price * order_item.quantity %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3 >Total price: <%= @order.total %> sek</h3>
+<h4>Including VAT. (12%): <%= @order.total * 0.1071 %> sek</h4>

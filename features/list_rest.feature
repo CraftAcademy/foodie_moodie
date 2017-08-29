@@ -17,7 +17,7 @@ Feature: As a user
     And I should see "<phone_number>"
     And I should see "<cuisine>"
     And I click on "Indian Fun"
-    Then I should see "Restaurant:"
+    Then I should see "Indian Fun"
 
     Examples:
       | name         | address1        | postal_code | phone_number | city      | cuisine       |

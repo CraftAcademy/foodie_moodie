@@ -16,11 +16,6 @@ When(/^I add "([^"]*)" to order$/) do |dish_title|
   click_link_or_button add_button_with_id
 end
 
-When(/^show me the page$/) do
-  sleep(1)
-#  save_and_open_page
-end
-
 Then(/^Order items in cart should be "([^"]*)"$/) do |expected_count|
   within '#order_item' do
     expect(page).to have_content expected_count

@@ -8,12 +8,6 @@ Feature: As a user
       | name       | address1     | postal_code | phone_number | city  | cuisine     |
       | Indian Fun | Snorgatan 12 | 164 55      | 1234555      | Kista | Indian Food |
 
-#    And the following categories of dishes exist:
-#      | title           |
-#      | starter         |
-#      | main            |
-#      | dessert         |
-
     And the following dishes exist:
       | title         | description                      | price | restaurant |
       | papadom       | deep fried crunchy things        | 100   | Indian Fun |
@@ -28,8 +22,7 @@ Feature: As a user
     And I should see "<title>"
     And I should see "<description>"
     And I should see "<price>"
-    
-   # And I should see "<category>"
+
     Examples:
       | title         | description                      | price | category |
       | papadom       | deep fried crunchy things        | 100   | starter  |

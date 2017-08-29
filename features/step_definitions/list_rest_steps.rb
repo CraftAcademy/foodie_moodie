@@ -4,7 +4,3 @@ Given(/^the following restaurants exist:$/) do |table|
     FactoryGirl.create(:restaurant, hash)
   end
 end
-
-Then(/^I should see "([^"]*)"$/) do |content|
-  expect(page).to have_content content
-end
