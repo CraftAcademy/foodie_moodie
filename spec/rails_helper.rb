@@ -15,6 +15,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-
   config.include ResponseJSON
+  config.before(:each) do
+    Aws.config[:s3] = {stub_responses: true}
+  end
 end
