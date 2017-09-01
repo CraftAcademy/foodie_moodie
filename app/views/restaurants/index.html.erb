@@ -16,33 +16,40 @@
   <% end %>
 </div>
 
-<div class="row">
 
-<% @restaurants.each do |restaurant| %>
+<div class="button-group filter-button-group left-align" style="margin-bottom: 10px; width: 100%;">
+  <span class="left-align">Filter:</span>
+  <button class="waves-effect waves-light btn btn-small" data-filter="*">show all</button>
+  <% @cuisines.each do |cuisine| %>
+      <button class="waves-effect waves-light btn btn-small" data-filter=".<%= cuisine.parameterize %>"><%= cuisine %></button>
+  <% end %>
+</div>
 
-    <div class="col s12 m4">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <%= image_tag "http://lorempixel.com/400/200/food/" + restaurant.id.to_s + "/"%>
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><%= restaurant.name %><i class="material-icons right">more_vert</i></span>
-          <p>Cuisine: <%= restaurant.cuisine %></p>
-          <br><%= link_to 'Go to restaurant: ' + restaurant.name, restaurant_path(restaurant)%>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><%= restaurant.name %><i class="material-icons right">close</i></span>
-          <div><%= restaurant.address %></div>
-          <div><%= restaurant.phone_number %></div>
-          <div><%= mail_to restaurant.email %></div>
-        </div>
+<div class="grid row center-align card" style="background-color: #b5d7d4">
+
+
+  <% @restaurants.each do |restaurant| %>
+
+    <div class="grid-item card fix-card left-align <%= restaurant.cuisine.parameterize %>">
+      <div class="card-image waves-effect waves-block waves-light">
+        <%= image_tag "http://lorempixel.com/400/200/food/" + restaurant.id.to_s + "/"%>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><%= restaurant.name %><i class="material-icons right">more_vert</i></span>
+        <p>Cuisine: <%= restaurant.cuisine %></p>
+        <br><%= link_to 'Go to restaurant: ' + restaurant.name, restaurant_path(restaurant)%>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><%= restaurant.name %><i class="material-icons right">close</i></span>
+        <div><%= restaurant.address %></div>
+        <div><%= restaurant.phone_number %></div>
+        <div><%= mail_to restaurant.email %></div>
       </div>
     </div>
 
-<% end %>
+  <% end %>
 
 </div>
-
 
 <script type="text/javascript">
   var my_latitude = <%= @my_ip_location[0] %>  || 59.330668;
@@ -50,6 +57,12 @@
   var map;
 
   document.addEventListener('DOMContentLoaded', function () {
+
+      $('.grid').isotope({
+          // options
+          itemSelector: '.grid-item',
+          layoutMode: 'fitRows'
+      });
 
         map = new GMaps({
           div: '#map',
@@ -91,6 +104,16 @@
         });
       <% end %>
 
+  });
+
+  // init Isotope
+  var $grid = $('.grid').isotope({
+      // options
+  });
+  // filter items on button click
+  $('.filter-button-group').on( 'click', 'button', function() {
+      var filterValue = $(this).attr('data-filter');
+      $grid.isotope({ filter: filterValue });
   });
   
 </script>

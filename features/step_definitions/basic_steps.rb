@@ -22,3 +22,8 @@ end
 When(/^show me the page$/) do
   save_and_open_page
 end
+
+And(/^I click on "([^"]*)" in the filter menu$/) do |button_name|
+  sleep(0.5)
+  first(:button, button_name).click
+end

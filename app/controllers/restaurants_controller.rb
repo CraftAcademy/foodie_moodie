@@ -12,6 +12,14 @@ class RestaurantsController < ApplicationController
       @geo_locate = true
     end
 
+    @cuisines = []
+
+    @restaurants.each do |rest|
+      @cuisines << rest.cuisine
+    end
+
+    @cuisines.uniq!
+
   end
 
   def show
